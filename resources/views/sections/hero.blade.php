@@ -4,15 +4,15 @@
     class="relative isolate overflow-hidden bg-white"
 >
     <!-- DEKORASI BACKGROUND -->
-    <div class="pointer-events-none absolute -right-40 top-10 h-[600px] w-[600px] rounded-full bg-secondary/5 blur-3xl"></div>
+    <div class="pointer-events-none absolute -right-40 top-10 h-600px w-600px rounded-full bg-secondary/5 blur-3xl"></div>
 
-    <div class="pointer-events-none absolute -left-60 bottom-0 h-[500px] w-[500px] rounded-full bg-secondary/5 blur-3xl"></div>
+    <div class="pointer-events-none absolute -left-60 bottom-0 h-500px w-500px rounded-full bg-secondary/5 blur-3xl"></div>
 
     <!-- CONTAINER -->
     <div class="relative mx-auto grid min-h-[calc(100svh-80px)] max-w-7xl grid-cols-1 items-center gap-16 px-6 py-16 lg:grid-cols-2 lg:gap-20 lg:px-10">
 
         <!-- TEKS KIRI -->
-        <div class="animate-fade-up">
+        <div class="hero-enter">
 
             <!-- LABEL -->
             <div class="mb-8 inline-flex items-center gap-3 rounded-full border border-secondary/15 bg-secondary/5 px-5 py-2.5">
@@ -87,10 +87,10 @@
 
 
         <!-- GAMBAR KANAN -->
-        <div class="animate-fade-in relative mx-auto w-full max-w-[480px]">
+        <div class="animate-fade-in relative mx-auto w-full max-w-480px">
 
             <!-- FRAME -->
-            <div class="relative aspect-[4/5] overflow-hidden rounded-[40px] bg-gradient-to-br from-[#E6F4F0] via-[#D5EBE6] to-[#BDE0D9]">
+            <div class="relative aspect-4/5 overflow-hidden rounded-[40px] bg-linear-to-br from-[#E6F4F0] via-[#D5EBE6] to-[#BDE0D9]">
 
                 <!-- DEKORASI -->
                 <div class="absolute -right-20 -top-20 h-72 w-72 rounded-full border border-white/70"></div>

@@ -32,11 +32,12 @@
 
     <!-- MAIN CONTENT -->
     <main>
+    @include('sections.hero')   
 
-        <!-- HERO -->
-        @include('sections.hero')
+    @include('sections.visi-misi')
 
-    </main>
+    @include('sections.sambutan-kepala')
+</main>
 
 </body>
 </html>
