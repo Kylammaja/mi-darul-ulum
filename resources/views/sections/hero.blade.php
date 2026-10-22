@@ -1,4 +1,3 @@
-
 <section
     id="beranda"
     class="relative isolate overflow-hidden bg-white"

@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+// HALAMAN BERANDA
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
+

@@ -12,6 +12,12 @@
 
     <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    
+<link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap"
+    rel="stylesheet"
+>
+
 
     <link rel="preconnect"
           href="https://fonts.gstatic.com" crossorigin>
@@ -37,7 +43,13 @@
     @include('sections.visi-misi')
 
     @include('sections.sambutan-kepala')
+
+    {{-- BERITA & PRESTASI --}}
+       @include('sections.components.news-section')
 </main>
+
+{{-- FOOTER --}}
+    @include('partials.footer')
 
 </body>
 </html>
