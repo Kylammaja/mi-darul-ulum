@@ -46,6 +46,9 @@
 
     {{-- BERITA & PRESTASI --}}
        @include('sections.components.news-section')
+
+       {{-- AJAKAN BERGABUNG / SPMB --}}
+@include('sections.join-school')
 </main>
 
 {{-- FOOTER --}}

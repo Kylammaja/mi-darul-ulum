@@ -285,7 +285,7 @@
                 </div>
 
                 <a
-                    href="#visi-misi"
+                    href="{{ route('home') }}#visi-misi"
                     @click="mobileOpen = false"
                     class="rounded-xl px-4 py-3 hover:bg-secondary/10"
                 >
@@ -310,7 +310,7 @@
                 >
 
                     <a
-                        href="#kepala-sekolah"
+                        href="{{ route('home') }}#kepala-sekolah"
                         @click="mobileOpen = false"
                         class="px-4 py-3"
                     >
@@ -321,7 +321,7 @@
                         Tentang Sekolah
                     </a>
 
-                    <a href="{{ url('/profil/struktur-organisasi') }}"
+                    <a href="{{ route('profil.struktur-organisasi') }}"
                        class="px-4 py-3">
                         Struktur Organisasi
                     </a>
