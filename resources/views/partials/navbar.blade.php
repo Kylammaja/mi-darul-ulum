@@ -23,35 +23,39 @@
             aria-label="Navigasi utama"
         >
 
-            <!-- LOGO -->
-            <a
-                href="{{ route('home') }}"
-                class="group flex shrink-0 items-center gap-3"
-            >
+          
+<!-- LOGO SEKOLAH -->
+<a href="{{ route('home') }}"
+   class="group flex shrink-0 items-center gap-3">
 
-                <div class="flex h-11 w-11 items-center justify-center rounded-full bg-secondary/10 p-1.5 transition duration-300 group-hover:rotate-6">
+    <!-- Logo PNG -->
+    <div class="flex h-12 w-12 shrink-0 items-center justify-center">
 
-                    <img
-                        src="{{ asset('images/logo-sekolah.png') }}"
-                        alt="Logo MI Darul Ulum Gedongan"
-                        class="h-full w-full object-contain"
-                    >
+        <img
+            src="{{ asset('images/logo-sekolah.png') }}"
+            alt="Logo MI Darul Ulum Gedongan"
+            width="48"
+            height="48"
+            class="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
+        >
 
-                </div>
+    </div>
 
-                <div class="leading-tight">
+    <!-- Nama Sekolah -->
+    <div class="leading-tight">
 
-                    <h1 class="font-heading text-xs font-extrabold tracking-tight text-primary sm:text-sm">
-                        MI DARUL ULUM
-                    </h1>
+        <p class="font-heading text-xs font-extrabold tracking-tight text-primary sm:text-sm">
+            MI DARUL ULUM
+        </p>
 
-                    <p class="mt-1 text-[9px] font-bold tracking-[0.18em] text-secondary">
-                        GEDONGAN
-                    </p>
+        <p class="mt-1 text-[9px] font-bold tracking-[0.18em] text-secondary">
+            GEDONGAN
+        </p>
 
-                </div>
+    </div>
 
-            </a>
+</a>
+
 
             <!-- NAVIGASI DESKTOP -->
             <div class="hidden items-center gap-1 lg:flex">
@@ -124,7 +128,7 @@
 
                 <!-- VISI MISI -->
                 <a
-                    href="#visi-misi"
+                    href="{{ route('home') }}#visi-misi"
                     class="rounded-full px-4 py-2.5 text-sm font-semibold text-primary transition duration-300 hover:bg-secondary/10 hover:text-secondary"
                 >
                     Visi & Misi
@@ -169,7 +173,7 @@
 
                         <div class="rounded-2xl border border-primary/10 bg-white/95 p-2 shadow-xl backdrop-blur-xl">
 
-                            <a href="#kepala-sekolah"
+                            <a href="{{ route('home') }}#kepala-sekolah"
                                class="block rounded-xl px-4 py-3 text-sm font-medium text-primary transition hover:bg-secondary/10 hover:text-secondary">
                                 Kepala Madrasah
                             </a>
@@ -340,6 +344,3 @@
 
     </div>
 </header>
-
-<!-- RUANG UNTUK NAVBAR FIXED -->
-<div class="h-24 sm:h-28" aria-hidden="true"></div>

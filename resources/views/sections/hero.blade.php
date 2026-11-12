@@ -1,123 +1,284 @@
+
+{{-- HERO BERANDA --}}
 <section
     id="beranda"
-    class="relative isolate overflow-hidden bg-white"
+    class="relative isolate overflow-hidden bg-white lg:min-h-[100svh]"
 >
-    <!-- DEKORASI BACKGROUND -->
-    <div class="pointer-events-none absolute -right-40 top-10 h-600px w-600px rounded-full bg-secondary/5 blur-3xl"></div>
 
-    <div class="pointer-events-none absolute -left-60 bottom-0 h-500px w-500px rounded-full bg-secondary/5 blur-3xl"></div>
+    {{-- BACKGROUND DECORATION --}}
+    <div
+        aria-hidden="true"
+        class="pointer-events-none absolute -left-32 top-28 h-72 w-72 rounded-full bg-secondary/5 blur-3xl"
+    ></div>
 
-    <!-- CONTAINER -->
-    <div class="relative mx-auto grid min-h-[calc(100svh-80px)] max-w-7xl grid-cols-1 items-center gap-16 px-6 py-16 lg:grid-cols-2 lg:gap-20 lg:px-10">
+    <div
+        aria-hidden="true"
+        class="pointer-events-none absolute -right-24 bottom-12 h-80 w-80 rounded-full bg-secondary/10 blur-3xl"
+    ></div>
 
-        <!-- TEKS KIRI -->
-        <div class="hero-enter">
+   
+{{-- MAIN CONTAINER --}}
+<div
+    class="relative mx-auto grid w-full max-w-7xl
+           grid-cols-1 items-center
+           gap-10 px-6
+           pb-14 pt-[116px]
 
-            <!-- LABEL -->
-            <div class="mb-8 inline-flex items-center gap-3 rounded-full border border-secondary/15 bg-secondary/5 px-5 py-2.5">
+           sm:gap-12 sm:px-8 sm:pb-20 sm:pt-32
 
-                <span class="h-2 w-2 rounded-full bg-secondary"></span>
+           lg:min-h-[100svh]
+           lg:grid-cols-2 lg:gap-16
+           lg:px-10 lg:pb-20 lg:pt-28"
+>
 
-                <span class="text-xs font-bold tracking-wide text-secondary">
+
+        {{-- =====================================
+             TEKS HERO - SEBELAH KIRI
+        ===================================== --}}
+        <div
+            class="hero-enter mx-auto w-full max-w-[580px]
+                   text-center lg:mx-0 lg:text-left"
+        >
+
+            {{-- LABEL WELCOME --}}
+            <div
+                class="mb-5 inline-flex items-center
+                       justify-center gap-3 rounded-full
+                       border border-secondary/15
+                       bg-secondary/5
+                       px-4 py-2.5
+                       sm:px-5 lg:mb-7"
+            >
+
+                <span
+                    class="h-2 w-2 shrink-0 rounded-full bg-secondary"
+                ></span>
+
+                <span
+                    class="text-[11px] font-bold tracking-wide
+                           text-secondary sm:text-xs"
+                >
                     Selamat Datang di Madrasah Kami
                 </span>
 
             </div>
 
-            <!-- HEADING -->
-            <h1 class="max-w-xl font-heading text-[clamp(2.75rem,5vw,4.75rem)] font-extrabold leading-[1.12] tracking-[-0.055em] text-primary">
+            {{-- HEADING --}}
+            <h1
+                class="mx-auto max-w-[520px]
+                       font-heading
+                       text-[clamp(2.1rem,8.5vw,2.6rem)]
+                       font-extrabold
+                       leading-[1.17]
+                       tracking-[-0.045em]
+                       text-primary
+
+                       sm:text-5xl
+
+                       lg:mx-0
+                       lg:text-[clamp(2.35rem,3.6vw,3.75rem)]"
+            >
 
                 Membangun
 
-                <span class="text-secondary">
+                <span class="block text-secondary">
                     Generasi Hebat,
                 </span>
 
-                untuk Masa Depan.
+                <span class="block">
+                    untuk Masa Depan.
+                </span>
 
             </h1>
 
-            <!-- DESCRIPTION -->
-            <p class="mt-7 max-w-lg font-body text-base leading-8 text-slate-500">
+            {{-- DESCRIPTION --}}
+            <p
+                class="mx-auto mt-5 max-w-[460px]
+                       font-body text-sm leading-7
+                       text-slate-600
 
-                MI Darul Ullum Gedongan hadir sebagai tempat
+                       sm:mt-6 sm:text-base sm:leading-8
+
+                       lg:mx-0 lg:max-w-[500px]"
+            >
+
+                MI Darul Ulum Gedongan hadir sebagai tempat
                 belajar, bertumbuh, dan mengembangkan potensi
                 anak melalui pendidikan yang berlandaskan
                 nilai-nilai Islam.
 
             </p>
 
-            <!-- BUTTON -->
-            <div class="mt-10 flex flex-wrap items-center gap-5">
+            {{-- =====================================
+                 BUTTONS
+            ===================================== --}}
+            <div
+                class="mt-7 flex flex-wrap
+                       items-center justify-center
+                       gap-x-5 gap-y-4
 
+                       sm:mt-8
+                       lg:justify-start lg:gap-x-6"
+            >
+
+                {{-- BUTTON PRIMARY --}}
                 <a
-                    href="#profil"
-                    class="group inline-flex items-center gap-4 rounded-full bg-primary px-8 py-4 text-sm font-bold text-white shadow-lg shadow-primary/10 transition duration-300 hover:-translate-y-1 hover:bg-secondary"
+                    href="#kepala-sekolah"
+                    class="group inline-flex items-center
+                           justify-center gap-3
+                           rounded-full bg-primary
+                           px-7 py-3.5
+                           text-sm font-bold text-white
+
+                           shadow-[0_8px_18px_rgba(0,56,68,0.12)]
+
+                           transition duration-300
+                           hover:-translate-y-1
+                           hover:bg-secondary"
                 >
+
                     Jelajahi Sekolah
 
-                    <span class="transition group-hover:translate-x-1">
+                    <span
+                        aria-hidden="true"
+                        class="transition-transform
+                               group-hover:translate-x-1"
+                    >
                         ↗
                     </span>
+
                 </a>
 
+                {{-- BUTTON SECONDARY --}}
                 <a
                     href="#visi-misi"
-                    class="inline-flex items-center gap-2 text-sm font-bold text-primary transition hover:text-secondary"
+                    class="inline-flex items-center
+                           justify-center gap-2
+                           text-sm font-bold text-primary
+                           transition hover:text-secondary"
                 >
+
                     Visi & Misi
-                    <span>→</span>
+
+                    <span aria-hidden="true">
+                        →
+                    </span>
+
                 </a>
 
             </div>
 
-            <!-- DETAIL BAWAH -->
-            <div class="mt-14 flex items-center gap-4">
+            {{-- DETAIL BAWAH --}}
+            <div
+                class="mt-8 flex items-center
+                       justify-center gap-3
 
-                <div class="h-px w-10 bg-secondary"></div>
+                       sm:mt-10
+                       lg:justify-start lg:gap-4"
+            >
 
-                <p class="text-xs font-medium tracking-wide text-slate-400">
+                <span
+                    aria-hidden="true"
+                    class="h-px w-8 bg-secondary
+                           sm:w-10"
+                ></span>
+
+                <p
+                    class="text-[11px] font-medium
+                           tracking-wide text-slate-500
+                           sm:text-xs"
+                >
+
                     Berilmu • Berakhlak • Berkembang
+
                 </p>
 
             </div>
 
         </div>
 
+        {{-- =====================================
+             FOTO GEDUNG SEKOLAH
+        ===================================== --}}
+        <div
+            class="animate-fade-in relative mx-auto
+                   w-full max-w-[480px] pb-7
 
-        <!-- GAMBAR KANAN -->
-        <div class="animate-fade-in relative mx-auto w-full max-w-480px">
+                   lg:max-w-[535px] lg:pb-5"
+        >
 
-            <!-- FRAME -->
-            <div class="relative aspect-4/5 overflow-hidden rounded-[40px] bg-linear-to-br from-[#E6F4F0] via-[#D5EBE6] to-[#BDE0D9]">
+            {{-- AKSEN GEOMETRIS --}}
+            <div
+                aria-hidden="true"
+                class="absolute -right-2 -top-2
+                       h-full w-full
+                       rounded-[26px]
+                       border border-secondary/15
 
-                <!-- DEKORASI -->
-                <div class="absolute -right-20 -top-20 h-72 w-72 rounded-full border border-white/70"></div>
+                       sm:-right-3 sm:-top-3
+                       sm:rounded-[30px]"
+            ></div>
 
-                <div class="absolute -bottom-24 -left-20 h-80 w-80 rounded-full bg-secondary/10"></div>
+            {{-- PHOTO CONTAINER --}}
+            <div
+                class="relative overflow-hidden
+                       rounded-[24px]
+                       border-4 border-white
+                       bg-[#E8F4F0]
 
-                <!-- FOTO SEKOLAH -->
-                @if (file_exists(public_path('images/hero-sekolah.png')))
+                       shadow-[0_18px_45px_rgba(0,56,68,0.14)]
+
+                       sm:rounded-[28px] sm:border-[5px]"
+            >
+
+                @if (file_exists(public_path('images/gedung-sekolah.webp')))
+
+                    <img
+                        src="{{ asset('images/gedung-sekolah.webp') }}"
+                        alt="Gedung MI Darul Ulum Gedongan"
+                        width="680"
+                        height="510"
+                        loading="eager"
+                        fetchpriority="high"
+                        decoding="async"
+                        class="aspect-[4/3] w-full
+                               object-cover object-center"
+                    >
+
+                @elseif (file_exists(public_path('images/hero-sekolah.png')))
 
                     <img
                         src="{{ asset('images/hero-sekolah.png') }}"
-                        alt="MI Darul Ullum Gedongan"
-                        class="absolute inset-0 h-full w-full object-contain object-bottom drop-shadow-2xl"
+                        alt="MI Darul Ulum Gedongan"
+                        loading="eager"
+                        decoding="async"
+                        class="aspect-[4/3] w-full
+                               object-contain object-center"
                     >
 
                 @else
 
-                    <!-- PLACEHOLDER FOTO -->
-                    <div class="absolute inset-0 flex flex-col items-center justify-center px-8 text-center">
+                    {{-- PLACEHOLDER --}}
+                    <div
+                        class="flex aspect-[4/3]
+                               flex-col items-center
+                               justify-center gap-3
+                               px-6 text-center text-secondary"
+                    >
 
-                        <span class="text-7xl">🏫</span>
+                        <span
+                            class="text-5xl"
+                            aria-hidden="true"
+                        >
+                            🏫
+                        </span>
 
-                        <p class="mt-6 font-heading text-xl font-bold text-primary">
-                            MI Darul Ullum Gedongan
+                        <p class="font-heading text-sm font-bold">
+                            Foto Gedung Sekolah
                         </p>
 
-                        <p class="mt-3 text-sm leading-6 text-secondary">
-                            Foto sekolah akan ditampilkan di sini
+                        <p class="text-xs">
+                            Simpan gedung-sekolah.webp di public/images
                         </p>
 
                     </div>
@@ -126,24 +287,56 @@
 
             </div>
 
-            <!-- KARTU MELAYANG -->
-            <div class="absolute -bottom-5 left-3 rounded-2xl border border-white bg-white px-5 py-4 shadow-xl sm:-left-5">
+            {{-- =====================================
+                 FLOATING INFO CARD
+            ===================================== --}}
+            <div
+                class="absolute -bottom-1 left-1/2 z-10
+                       flex w-max
+                       max-w-[calc(100%-24px)]
+                       -translate-x-1/2
+                       items-center gap-3
+                       rounded-2xl
+                       border border-primary/10
+                       bg-white px-4 py-3
 
-                <div class="flex items-center gap-3">
+                       shadow-[0_12px_28px_rgba(0,56,68,0.12)]
 
-                    <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-secondary/10 text-xl text-secondary">
-                        ✦
-                    </div>
+                       sm:left-0 sm:-translate-x-0
+                       sm:px-5 sm:py-4
 
-                    <div>
-                        <h3 class="font-heading text-sm font-bold text-primary">
-                            Pendidikan Berkualitas
-                        </h3>
+                       lg:-left-5"
+            >
 
-                        <p class="mt-1 text-xs text-slate-500">
-                            Tumbuh Bersama, Raih Prestasi
-                        </p>
-                    </div>
+                {{-- ICON --}}
+                <div
+                    class="flex h-10 w-10 shrink-0
+                           items-center justify-center
+                           rounded-xl bg-secondary/10
+                           text-xl text-secondary
+
+                           sm:h-11 sm:w-11"
+                >
+                    ✦
+                </div>
+
+                {{-- TEXT --}}
+                <div>
+
+                    <p
+                        class="font-heading text-xs
+                               font-bold text-primary
+                               sm:text-sm"
+                    >
+                        Pendidikan Berkualitas
+                    </p>
+
+                    <p
+                        class="mt-1 text-[11px]
+                               text-slate-500 sm:text-xs"
+                    >
+                        Tumbuh Bersama, Raih Prestasi
+                    </p>
 
                 </div>
 
@@ -152,4 +345,5 @@
         </div>
 
     </div>
+
 </section>

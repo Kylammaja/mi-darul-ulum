@@ -155,3 +155,72 @@ html {
 
 
 }
+
+
+/* ===================================
+   HERO RESPONSIVE - MOBILE
+=================================== */
+
+@media (max-width: 767px) {
+
+    /* Hilangkan ruang kosong berlebihan */
+    #beranda {
+        min-height: auto !important;
+        padding-top: 0 !important;
+    }
+
+    #beranda .hero-layout {
+        min-height: 0 !important;
+        align-items: start !important;
+
+        padding-top: 120px !important;
+        padding-bottom: 44px !important;
+
+        row-gap: 32px !important;
+    }
+
+    /* Semua teks rata tengah */
+    #beranda .hero-enter {
+        text-align: center;
+        width: 100%;
+    }
+
+    /* Judul lebih proporsional */
+    #beranda .hero-enter h1 {
+        font-size: clamp(2rem, 8.5vw, 2.65rem);
+        line-height: 1.16;
+        letter-spacing: -0.045em;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Deskripsi */
+    #beranda .hero-enter > p {
+        margin-top: 22px;
+        margin-left: auto;
+        margin-right: auto;
+
+        max-width: 420px;
+        line-height: 1.8;
+    }
+
+    /* Tombol berada di tengah */
+    #beranda .hero-enter > div.flex {
+        justify-content: center;
+    }
+
+    /* Perkecil jarak tombol */
+    #beranda .hero-enter > .mt-10 {
+        margin-top: 28px;
+    }
+
+    /* Perkecil jarak teks dekorasi bawah */
+    #beranda .hero-enter > .mt-14 {
+        margin-top: 30px;
+    }
+
+    /* Jarak foto setelah teks */
+    #beranda .hero-layout > div:last-child {
+        margin-top: 4px;
+    }
+}
