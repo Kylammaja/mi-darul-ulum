@@ -3,87 +3,7 @@
 @section('title', 'Berita & Prestasi | MI Darul Ulum Gedongan')
 
 @section('content')
-@php
-    /*
-     | DATA CONTOH UNTUK DESAIN.
-     | Ganti judul, deskripsi, dan gambar dengan berita resmi sekolah.
-     | Semua rasio dijaga oleh CSS aspect-ratio, bukan dipaksa ke ukuran seragam.
-     */
-    $berita = [
-        [
-            'kategori' => 'Kegiatan',
-            'judul' => 'Aktivitas Pembelajaran di Madrasah',
-            'deskripsi' => 'Contoh konten mengenai kegiatan belajar dan suasana pembelajaran di lingkungan madrasah.',
-            'gambar' => 'images/berita/berita-01.jpg',
-            'rasio' => '16 / 9',
-            'label_rasio' => '16:9',
-        ],
-        [
-            'kategori' => 'Prestasi',
-            'judul' => 'Semangat Meraih Prestasi',
-            'deskripsi' => 'Contoh konten untuk menampilkan penghargaan serta pencapaian peserta didik.',
-            'gambar' => 'images/berita/berita-02.jpg',
-            'rasio' => '3 / 4',
-            'label_rasio' => '3:4',
-        ],
-        [
-            'kategori' => 'Keagamaan',
-            'judul' => 'Pembiasaan Nilai-Nilai Islami',
-            'deskripsi' => 'Contoh konten tentang pembiasaan dan kegiatan keagamaan peserta didik.',
-            'gambar' => 'images/berita/berita-03.jpg',
-            'rasio' => '9 / 16',
-            'label_rasio' => '9:16',
-        ],
-        [
-            'kategori' => 'Literasi',
-            'judul' => 'Menumbuhkan Minat Baca Sejak Dini',
-            'deskripsi' => 'Contoh konten aktivitas literasi untuk mendukung pembelajaran.',
-            'gambar' => 'images/berita/berita-04.jpg',
-            'rasio' => '1 / 1',
-            'label_rasio' => '1:1',
-        ],
-        [
-            'kategori' => 'Kreativitas',
-            'judul' => 'Mengembangkan Kreativitas Siswa',
-            'deskripsi' => 'Contoh konten tentang karya, seni, dan aktivitas kreatif peserta didik.',
-            'gambar' => 'images/berita/berita-05.jpg',
-            'rasio' => '3 / 4',
-            'label_rasio' => '3:4',
-        ],
-        [
-            'kategori' => 'Kegiatan',
-            'judul' => 'Kebersamaan Warga Madrasah',
-            'deskripsi' => 'Contoh konten kegiatan bersama guru, siswa, dan warga madrasah.',
-            'gambar' => 'images/berita/berita-06.jpg',
-            'rasio' => '3 / 4',
-            'label_rasio' => '3:4',
-        ],
-        [
-            'kategori' => 'Ekstrakurikuler',
-            'judul' => 'Bakat dan Minat Peserta Didik',
-            'deskripsi' => 'Contoh konten kegiatan ekstrakurikuler untuk mengembangkan potensi siswa.',
-            'gambar' => 'images/berita/berita-07.jpg',
-            'rasio' => '3 / 4',
-            'label_rasio' => '3:4',
-        ],
-        [
-            'kategori' => 'Informasi',
-            'judul' => 'Agenda dan Informasi Sekolah',
-            'deskripsi' => 'Contoh konten pengumuman agenda dan informasi penting madrasah.',
-            'gambar' => 'images/berita/berita-08.jpg',
-            'rasio' => '1 / 1',
-            'label_rasio' => '1:1',
-        ],
-        [
-            'kategori' => 'Dokumentasi',
-            'judul' => 'Potret Kegiatan dan Lingkungan Sekolah',
-            'deskripsi' => 'Contoh dokumentasi aktivitas dan lingkungan MI Darul Ulum Gedongan.',
-            'gambar' => 'images/berita/berita-09.jpg',
-            'rasio' => '16 / 9',
-            'label_rasio' => '16:9',
-        ],
-    ];
-@endphp
+{{-- Data $berita dikirim oleh BeritaPublikController dari tabel MySQL `beritas`. --}}
 
 <style>
     /* Hanya berlaku pada halaman Berita. Tidak mengubah carousel di Beranda. */
@@ -168,6 +88,13 @@
             </p>
         </div>
 
+        @if (count($berita) === 0)
+            <div class="mx-auto max-w-xl rounded-3xl border border-secondary/15 bg-white px-6 py-14 text-center shadow-sm">
+                <h2 class="font-heading text-xl font-bold text-primary">Belum ada berita yang dipublikasikan</h2>
+                <p class="mt-3 text-sm leading-7 text-slate-600">Berita akan tampil di sini setelah admin mengubah statusnya menjadi Publikasi.</p>
+            </div>
+        @endif
+
         <!-- BARIS FEATURED: 16:9 + 3:4 -->
         <div class="grid grid-cols-1 items-start gap-5 lg:grid-cols-12 lg:gap-6">
             @foreach (array_slice($berita, 0, 2) as $index => $item)
@@ -179,7 +106,7 @@
                         class="berita-tile-inner group relative block w-full overflow-hidden rounded-[24px] bg-primary text-left text-white shadow-lg shadow-primary/10 transition-shadow duration-500 hover:shadow-2xl hover:shadow-primary/20 sm:rounded-[30px]"
                         style="aspect-ratio: {{ $item['rasio'] }};"
                     >
-                        @if (file_exists(public_path($item['gambar'])))
+                        @if ($item['gambar'] && file_exists(public_path($item['gambar'])))
                             <img
                                 src="{{ asset($item['gambar']) }}"
                                 alt="Dokumentasi {{ $item['judul'] }}"
@@ -226,7 +153,7 @@
                         class="berita-tile-inner group relative block w-full overflow-hidden rounded-[24px] bg-primary text-left text-white shadow-lg shadow-primary/10 transition-shadow duration-500 hover:shadow-2xl hover:shadow-primary/20 sm:rounded-[30px]"
                         style="aspect-ratio: {{ $item['rasio'] }};"
                     >
-                        @if (file_exists(public_path($item['gambar'])))
+                        @if ($item['gambar'] && file_exists(public_path($item['gambar'])))
                             <img
                                 src="{{ asset($item['gambar']) }}"
                                 alt="Dokumentasi {{ $item['judul'] }}"
@@ -262,11 +189,11 @@
             @endforeach
         </div>
 
-        <div class="mt-12 text-center">
-            <p class="text-xs leading-6 text-slate-500">
-                Konten dan judul pada halaman ini masih contoh desain. Informasi resmi akan ditambahkan kemudian.
+        @if (count($berita) > 0)
+            <p class="mt-12 text-center text-xs leading-6 text-slate-500">
+                Menampilkan {{ count($berita) }} berita yang telah dipublikasikan oleh madrasah.
             </p>
-        </div>
+        @endif
     </div>
 
     <!-- DETAIL PREVIEW: tidak memakai route palsu -->
@@ -291,8 +218,16 @@
                     <button type="button" @click="selected = null" aria-label="Tutup detail berita" class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100 text-xl text-primary transition hover:bg-secondary/10">&times;</button>
                 </div>
                 <h2 class="mt-6 font-heading text-2xl font-extrabold leading-snug sm:text-3xl">{{ $item['judul'] }}</h2>
+                @if ($item['gambar'] && file_exists(public_path($item['gambar'])))
+                    <img src="{{ asset($item['gambar']) }}" alt="Foto {{ $item['judul'] }}" loading="lazy" class="mt-5 aspect-[16/9] w-full rounded-2xl object-cover">
+                @endif
+                @if ($item['tanggal'])
+                    <p class="mt-4 text-xs text-slate-500">Dipublikasikan {{ $item['tanggal'] }}</p>
+                @endif
                 <p class="mt-5 leading-8 text-slate-600">{{ $item['deskripsi'] }}</p>
-                <p class="mt-6 border-t border-primary/10 pt-5 text-sm text-slate-500">Ini adalah pratinjau konten. Artikel lengkap akan tersedia setelah data berita resmi ditambahkan melalui admin.</p>
+                @if (filled($item['konten']))
+                    <div class="mt-5 border-t border-primary/10 pt-5 text-sm leading-8 text-slate-700">{!! nl2br(e($item['konten'])) !!}</div>
+                @endif
             </div>
         @endforeach
     </div>

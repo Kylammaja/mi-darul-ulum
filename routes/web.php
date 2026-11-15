@@ -1,11 +1,24 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\BeritaController;
+use App\Http\Controllers\BeritaPublikController;
 
 // Beranda: pertahankan file dan section yang sudah ada.
+
+
 Route::get('/', function () {
-    return view('welcome');
+
+    $beritas = \App\Models\Berita::where('is_published', true)
+        ->latest()
+        ->take(9)
+        ->get();
+
+    return view('welcome', compact('beritas'));
+
 })->name('home');
+
+
 
 // Halaman informasi.
 Route::view('/informasi/spmb', 'pages.informasi', [
@@ -19,7 +32,12 @@ Route::view('/informasi/spmb', 'pages.informasi', [
     ],
 ])->name('informasi.spmb');
 
-Route::view('/informasi/berita', 'pages.berita')->name('informasi.berita');
+
+Route::get('/informasi/berita', [
+    BeritaPublikController::class,
+    'index'
+])->name('informasi.berita');
+
 
 Route::view('/informasi/fasilitas', 'pages.informasi', [
     'label' => 'LINGKUNGAN BELAJAR',
@@ -67,3 +85,35 @@ Route::get('/profil/kepala-madrasah', function () {
 Route::get('/profil/struktur-organisasi', function () {
     return view('pages.struktur-organisasi');
 })->name('profil.struktur-organisasi');
+
+use App\Http\Controllers\AdminAuthController;
+use App\Http\Middleware\EnsureAdmin;
+
+// LOGIN ADMIN
+Route::get('/admin/login', [
+    AdminAuthController::class,
+    'showLogin'
+])->name('login');
+
+Route::post('/admin/login', [
+    AdminAuthController::class,
+    'login'
+])->middleware('throttle:5,1')->name('admin.login.submit');
+
+// HALAMAN KHUSUS ADMIN
+Route::middleware(['auth', EnsureAdmin::class])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+
+        Route::view('/dashboard', 'admin.dashboard')
+            ->name('dashboard');
+
+        Route::post('/logout', [
+            AdminAuthController::class,
+            'logout'
+        ])->name('logout');
+    
+        Route::resource('berita', BeritaController::class)
+    ->parameters(['berita' => 'berita'])
+    ->except(['show']);});

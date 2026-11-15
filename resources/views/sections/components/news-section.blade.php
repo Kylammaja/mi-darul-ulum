@@ -1,44 +1,22 @@
 
 @php
-    // DATA CONTOH BERITA
-    $berita = [
-        [
-            'kategori' => 'Kegiatan',
-            'judul' => 'Aktivitas Pembelajaran Siswa',
-            'deskripsi' => 'Suasana pembelajaran dan kegiatan peserta didik di lingkungan madrasah.',
-            'gambar' => 'berita-1.jpg',
-        ],
-        [
-            'kategori' => 'Kreativitas',
-            'judul' => 'Kegiatan Kreatif Siswa',
-            'deskripsi' => 'Mengembangkan minat, bakat, dan kreativitas melalui berbagai kegiatan.',
-            'gambar' => 'berita-2.jpg',
-        ],
-        [
-            'kategori' => 'Prestasi',
-            'judul' => 'Semangat Meraih Prestasi',
-            'deskripsi' => 'Mengapresiasi semangat belajar dan pencapaian peserta didik.',
-            'gambar' => 'berita-3.jpg',
-        ],
-        [
-            'kategori' => 'Keagamaan',
-            'judul' => 'Pembiasaan Nilai-Nilai Islami',
-            'deskripsi' => 'Membentuk karakter melalui pendidikan dan kegiatan keagamaan.',
-            'gambar' => 'berita-4.jpg',
-        ],
-        [
-            'kategori' => 'Ekstrakurikuler',
-            'judul' => 'Mengembangkan Bakat Siswa',
-            'deskripsi' => 'Mendukung minat, bakat, dan potensi peserta didik.',
-            'gambar' => 'berita-5.jpg',
-        ],
-        [
-            'kategori' => 'Informasi',
-            'judul' => 'Informasi dan Agenda Madrasah',
-            'deskripsi' => 'Informasi mengenai agenda dan kegiatan di lingkungan sekolah.',
-            'gambar' => 'berita-6.jpg',
-        ],
-    ];
+    // Data berita dari tabel beritas, dikirim oleh route Beranda.
+    // Hanya berita yang berstatus publikasi yang diambil di routes/web.php.
+    $berita = collect($beritas ?? [])
+        ->map(function ($item) {
+            return [
+                'kategori' => $item->kategori ?: 'Berita',
+                'judul' => $item->judul,
+                'deskripsi' => $item->deskripsi,
+                'konten' => $item->konten,
+                // Field gambar disimpan relatif terhadap disk storage/app/public.
+                'gambar' => $item->gambar
+                    ? \Illuminate\Support\Facades\Storage::disk('public')->url($item->gambar)
+                    : null,
+            ];
+        })
+        ->values()
+        ->all();
 @endphp
 
 <section
@@ -94,6 +72,11 @@
 
         </div>
 
+        @if (count($berita) === 0)
+            <div class="rounded-[28px] border border-[#006B66]/10 bg-white px-8 py-14 text-center text-slate-600 shadow-sm">
+                Belum ada berita yang dipublikasikan. Silakan kunjungi kembali nanti.
+            </div>
+        @else
         <!-- NEWS CAROUSEL: DESAIN KARTU ASLI DIPERTAHANKAN -->
         <div class="relative">
             <!-- TOMBOL SEBELUMNYA -->
@@ -134,10 +117,10 @@
 
                         <div class="relative h-60 overflow-hidden rounded-[22px] bg-[#DCEAE7]">
 
-                            @if (file_exists(public_path('images/' . $item['gambar'])))
+                            @if (!empty($item['gambar']))
 
                                 <img
-                                    src="{{ asset('images/' . $item['gambar']) }}"
+                                    src="{{ $item['gambar'] }}"
                                     alt="{{ $item['judul'] }}"
                                     loading="lazy"
                                     class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
@@ -186,10 +169,10 @@
                         class="group relative h-full min-h-[440px] overflow-hidden rounded-[28px] bg-[#003844] shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
                     >
 
-                        @if (file_exists(public_path('images/' . $item['gambar'])))
+                        @if (!empty($item['gambar']))
 
                             <img
-                                src="{{ asset('images/' . $item['gambar']) }}"
+                                src="{{ $item['gambar'] }}"
                                 alt="{{ $item['judul'] }}"
                                 loading="lazy"
                                 class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
@@ -263,11 +246,13 @@
             </button>
         </div>
 
+        @endif
+
         <!-- VIEW ALL BUTTON -->
         <div class="mt-12 text-center">
 
             <a
-                href="#berita-prestasi"
+                href="{{ url('/informasi/berita') }}"
                 class="inline-flex items-center gap-3 rounded-full border-2 border-[#006B66] px-7 py-3.5 text-sm font-bold text-[#006B66] transition hover:bg-[#006B66] hover:text-white"
             >
                 Berita & Prestasi Sekolah
@@ -322,9 +307,18 @@
                     {{ $item['deskripsi'] }}
                 </p>
 
-                <p class="mt-5 text-sm text-slate-400">
-                    Ini adalah contoh konten. Detail berita resmi sekolah akan ditambahkan kemudian.
-                </p>
+                @if (!empty($item['gambar']))
+                    <img
+                        src="{{ $item['gambar'] }}"
+                        alt="{{ $item['judul'] }}"
+                        class="mt-5 max-h-64 w-full rounded-2xl object-contain bg-[#F6F9F8]"
+                        loading="lazy"
+                    >
+                @endif
+
+                @if (!empty($item['konten']))
+                    <div class="mt-5 whitespace-pre-line break-words text-sm leading-8 text-slate-700">{{ $item['konten'] }}</div>
+                @endif
 
             </div>
 
