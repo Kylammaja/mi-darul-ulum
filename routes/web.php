@@ -21,16 +21,11 @@ Route::get('/', function () {
 
 
 // Halaman informasi.
-Route::view('/informasi/spmb', 'pages.informasi', [
-    'label' => 'PENERIMAAN MURID BARU',
-    'title' => 'Informasi SPMB',
-    'description' => 'Informasi pendaftaran murid baru MI Darul Ulum Gedongan akan disajikan di halaman ini.',
-    'topics' => [
-        ['title' => 'Jadwal Pendaftaran', 'description' => 'Tanggal dan tahapan pendaftaran akan dicantumkan setelah dikonfirmasi pihak madrasah.'],
-        ['title' => 'Persyaratan', 'description' => 'Dokumen dan persyaratan calon murid akan diumumkan melalui halaman ini.'],
-        ['title' => 'Alur Pendaftaran', 'description' => 'Informasi tahapan pengisian formulir dan verifikasi akan ditambahkan.'],
-    ],
-])->name('informasi.spmb');
+
+Route::get('/informasi/spmb', function () {
+    return view('pages.spmb');
+})->name('informasi.spmb');
+
 
 
 Route::get('/informasi/berita', [
