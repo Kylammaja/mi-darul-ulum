@@ -117,10 +117,14 @@
                                 Berita Sekolah
                             </a>
 
-                            <a href="{{ url('/informasi/fasilitas') }}"
-                               class="block rounded-xl px-4 py-3 text-sm font-medium text-primary transition hover:bg-secondary/10 hover:text-secondary">
-                                Fasilitas
-                            </a>
+<a href="{{ route('informasi.fasilitas') }}"
+   class="block rounded-xl px-4 py-3
+          text-sm font-semibold text-[#003844]
+          transition hover:bg-[#006B66]/10
+          hover:text-[#006B66]">
+    Fasilitas
+</a>
+
 
                         </div>
                     </div>
@@ -283,9 +287,9 @@
                         Berita
                     </a>
 
-                    <a href="{{ url('/informasi/fasilitas') }}" class="px-4 py-3">
-                        Fasilitas
-                    </a>
+                    <a href="{{ route('informasi.fasilitas') }}">
+    Fasilitas
+</a>
                 </div>
 
                 <a

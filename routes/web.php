@@ -39,16 +39,11 @@ Route::get('/informasi/berita', [
 ])->name('informasi.berita');
 
 
-Route::view('/informasi/fasilitas', 'pages.informasi', [
-    'label' => 'LINGKUNGAN BELAJAR',
-    'title' => 'Fasilitas Madrasah',
-    'description' => 'Halaman dokumentasi fasilitas MI Darul Ulum Gedongan.',
-    'topics' => [
-        ['title' => 'Ruang dan Lingkungan', 'description' => 'Foto dan penjelasan fasilitas sekolah akan ditambahkan berdasarkan data asli.'],
-        ['title' => 'Sarana Pembelajaran', 'description' => 'Informasi sarana belajar akan dicantumkan setelah dikonfirmasi.'],
-        ['title' => 'Galeri Fasilitas', 'description' => 'Dokumentasi lingkungan dan fasilitas madrasah akan tersedia di sini.'],
-    ],
-])->name('informasi.fasilitas');
+
+Route::get('/informasi/fasilitas', function () {
+    return view('pages.fasilitas');
+})->name('informasi.fasilitas');
+
 
 // Halaman profil.
 Route::view('/profil', 'pages.informasi', [
