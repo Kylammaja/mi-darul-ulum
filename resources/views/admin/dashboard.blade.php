@@ -65,7 +65,10 @@
             Kelola Berita
             <span>↗</span>
         </a>
-
+<a href="{{ route('admin.struktur-organisasi.index') }}"
+   class="inline-flex rounded-full bg-[#006B66] px-6 py-3 text-sm font-bold text-white hover:bg-[#003844]">
+    Kelola Struktur Organisasi
+</a>
     </div>
 
 </div>

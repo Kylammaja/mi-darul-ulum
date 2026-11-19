@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Guru;
+use App\Http\Controllers\Admin\GuruController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\BeritaPublikController;
@@ -72,9 +74,22 @@ Route::get('/profil/kepala-madrasah', function () {
     return redirect(route('home') . '#kepala-sekolah');
 })->name('profil.kepala');
 
+
 Route::get('/profil/struktur-organisasi', function () {
-    return view('pages.struktur-organisasi');
+
+    $gurus = Guru::where('is_active', true)
+        ->orderBy('urutan')
+        ->orderBy('id')
+        ->get();
+
+    return view('pages.struktur-organisasi', compact('gurus'));
+
+Route::resource('struktur-organisasi', GuruController::class)
+    ->parameters(['struktur-organisasi' => 'guru'])
+    ->except(['show']);
+
 })->name('profil.struktur-organisasi');
+
 
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Middleware\EnsureAdmin;
@@ -98,6 +113,11 @@ Route::middleware(['auth', EnsureAdmin::class])
 
         Route::view('/dashboard', 'admin.dashboard')
             ->name('dashboard');
+
+            Route::resource('struktur-organisasi', GuruController::class)
+    ->parameters(['struktur-organisasi' => 'guru'])
+    ->except(['show']);
+
 
         Route::post('/logout', [
             AdminAuthController::class,

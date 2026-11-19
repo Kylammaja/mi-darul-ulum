@@ -1,0 +1,23 @@
+// BAGIAN ATAS routes/web.php (tambahkan use, jangan duplikasi):
+use App\Models\Guru;
+use App\Http\Controllers\Admin\GuruController;
+
+// ROUTE PUBLIK: ganti route /profil/struktur-organisasi LAMA dengan ini.
+// Jangan membuat dua route untuk URL yang sama.
+Route::get('/profil/struktur-organisasi', function () {
+    $gurus = Guru::where('is_active', true)
+        ->orderBy('urutan')
+        ->orderBy('id')
+        ->get();
+
+    return view('pages.struktur-organisasi', compact('gurus'));
+})->name('profil.struktur-organisasi');
+
+// ROUTE ADMIN: letakkan hanya baris berikut di DALAM group admin
+// yang SUDAH ADA (middleware auth, EnsureAdmin::class, prefix admin, name admin.):
+Route::resource('struktur-organisasi', GuruController::class)
+    ->parameters(['struktur-organisasi' => 'guru'])
+    ->except(['show']);
+
+// LINK DASHBOARD ADMIN: letakkan pada resources/views/admin/dashboard.blade.php
+<a href="{{ route('admin.struktur-organisasi.index') }}">Kelola Struktur Organisasi</a>

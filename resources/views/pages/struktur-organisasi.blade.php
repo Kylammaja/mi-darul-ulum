@@ -3,21 +3,6 @@
 @section('title', 'Struktur Organisasi | MI Darul Ulum Gedongan')
 
 @section('content')
-@php
-    /*
-     | DATA CONTOH, BUKAN DATA RESMI MADRASAH.
-     | Ganti nama, jabatan dan foto sesuai 15 guru yang sebenarnya.
-     | Simpan foto PNG transparan di public/images/guru/guru-01.png, dst.
-     */
-    $guru = [];
-    for ($i = 1; $i <= 15; $i++) {
-        $guru[] = [
-            'nama' => 'Nama Guru ' . str_pad($i, 2, '0', STR_PAD_LEFT),
-            'jabatan' => $i === 1 ? 'Kepala Madrasah (contoh)' : 'Guru / Tenaga Pendidik',
-            'foto' => 'images/guru/guru-' . str_pad($i, 2, '0', STR_PAD_LEFT) . '.png',
-        ];
-    }
-@endphp
 
 <section id="struktur-organisasi" class="relative isolate overflow-hidden bg-white py-20 sm:py-24 lg:py-28">
     <!-- Dekorasi ringan sesuai warna website -->
@@ -40,9 +25,9 @@
             </p>
         </div>
 
-        <!-- 15 kartu; 1 kolom HP kecil, 2 tablet, 3 laptop, 4 desktop lebar -->
+        <!-- Data guru aktif dari MySQL; desain kartu asli tetap dipertahankan -->
         <div class="grid grid-cols-1 justify-items-center gap-x-6 gap-y-10 min-[520px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            @foreach ($guru as $orang)
+            @forelse ($gurus as $orang)
                 <article class="org-card group relative isolate h-[385px] w-full max-w-[310px] overflow-hidden rounded-[24px] border border-primary/10 bg-[#F4F8F6] shadow-[0_10px_28px_rgba(0,56,68,0.08)] transition-[box-shadow,border-color] duration-300 hover:border-secondary/30 hover:shadow-[0_22px_46px_rgba(0,56,68,0.16)]">
                     <!-- Panel vertikal seperti referensi, memakai warna sekolah -->
                     <div class="absolute inset-x-[20%] top-7 bottom-0 rounded-t-[22px] bg-gradient-to-b from-[#008579] via-secondary to-primary" aria-hidden="true"></div>
@@ -50,10 +35,10 @@
                     <div class="pointer-events-none absolute right-4 top-4 h-12 w-12 rounded-full border border-secondary/15" aria-hidden="true"></div>
 
                     <!-- Foto PNG transparan. Placeholder jika belum ada foto. -->
-                    @if (file_exists(public_path($orang['foto'])))
+                    @if ($orang->foto)
                         <img
-                            src="{{ asset($orang['foto']) }}"
-                            alt="Foto {{ $orang['nama'] }}"
+                            src="{{ asset('storage/' . $orang->foto) }}"
+                            alt="Foto {{ $orang->nama }}"
                             loading="lazy"
                             class="absolute inset-x-0 bottom-0 z-10 h-[94%] w-full object-contain object-bottom transition-transform duration-700 ease-out group-hover:scale-[1.045]"
                         >
@@ -69,17 +54,23 @@
                     <!-- Gradien untuk keterbacaan nama, tidak menutupi desain foto -->
                     <div class="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-40 bg-gradient-to-t from-primary via-primary/85 to-transparent" aria-hidden="true"></div>
                     <div class="absolute inset-x-0 bottom-0 z-30 p-5 text-white">
-                        <p class="font-heading text-lg font-extrabold leading-snug">{{ $orang['nama'] }}</p>
-                        <p class="mt-1 text-xs font-medium text-emerald-100/90">{{ $orang['jabatan'] }}</p>
+                        <p class="font-heading text-lg font-extrabold leading-snug">{{ $orang->nama }}</p>
+                        <p class="mt-1 text-xs font-medium text-emerald-100/90">{{ $orang->jabatan }}</p>
                     </div>
                 </article>
-            @endforeach
+            @empty
+                <div class="col-span-full mx-auto max-w-2xl rounded-3xl border border-secondary/10 bg-[#F4F8F6] px-8 py-14 text-center">
+                    <h2 class="font-heading text-xl font-bold text-primary">Data pendidik belum tersedia</h2>
+                    <p class="mt-3 text-sm leading-7 text-slate-600">Informasi struktur organisasi akan diperbarui oleh pihak madrasah.</p>
+                </div>
+            @endforelse
         </div>
 
-        <p class="mx-auto mt-12 max-w-2xl text-center text-sm leading-7 text-slate-500">
-            Data nama, jabatan, dan foto saat ini masih berupa contoh untuk rancangan tampilan.
-            Ganti dengan informasi resmi madrasah sebelum dipublikasikan.
-        </p>
+        @if ($gurus->isNotEmpty())
+            <p class="mx-auto mt-12 max-w-2xl text-center text-sm leading-7 text-slate-500">
+                Informasi pendidik dan pengelola MI Darul Ulum Gedongan.
+            </p>
+        @endif
     </div>
 </section>
 
